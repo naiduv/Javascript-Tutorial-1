@@ -1,5 +1,7 @@
+//this is your timer, does nothing right now
 Timer = function() {}
 
+//randomly returns a +1 or -1
 randfunc = function(){
 	if(Math.random()<0.5) 
 		return 1; 
@@ -7,11 +9,13 @@ randfunc = function(){
 		return -1;
 }
 
+//update x and y coordinate with randfunc value
 Timer.update = function() {
 	x += randfunc();
 	y += randfunc();
 }
 
+//when the page loads init your vars and get the canvas and context
 window.onload = function() {
 	x = 0;
 	y = 0;
@@ -19,6 +23,7 @@ window.onload = function() {
 	ctx = c.getContext("2d");
 }
 
+//function to run on the timer!!
 Timer.run = function() {
   Timer.update();
   ctx.fillStyle="#1589FF";
@@ -26,5 +31,5 @@ Timer.run = function() {
   ctx.drawImage(document.getElementById("flag"),x,y);
 };
 
-Timer.fps = 100;
-Timer._intervalId = setInterval(Timer.run, 1000 / Timer.fps);
+//timer interval is 10ms
+Timer._intervalId = setInterval(Timer.run, 10);
